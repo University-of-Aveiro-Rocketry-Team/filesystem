@@ -7,8 +7,8 @@
 
 
 // SPIFFS Configuration
-#define SPIFFS_FILE_PATH    "/spiffs/mpu.txt"
-
+#define SPIFFS_MPU_PATH    "/spiffs/mpu.txt"
+#define SPIFFS_NEO_PATH    "/spiffs/neo.txt"
 
 void app_main(void)
 {
@@ -40,17 +40,29 @@ void app_main(void)
     }
 
     // Read files
-    spiffs_read_file(SPIFFS_FILE_PATH);
+    spiffs_read_file(SPIFFS_MPU_PATH);
+    spiffs_read_file(SPIFFS_NEO_PATH);
 
+    /*
     // Delete files
-    spiffs_delete_file(SPIFFS_FILE_PATH);
+    spiffs_delete_file(SPIFFS_MPU_PATH);
+    spiffs_delete_file(SPIFFS_NEO_PATH);
 
     // Check if files were deleted
-    if (spiffs_file_exists(SPIFFS_FILE_PATH)) {
+    if (spiffs_file_exists(SPIFFS_MPU_PATH)) {
         ESP_LOGE(TAG, "File still exists after deletion");
     } else {
         ESP_LOGI(TAG, "File successfully deleted");
     }
+    if (spiffs_file_exists(SPIFFS_NEO_PATH))
+    {
+        ESP_LOGE(TAG, "File still exists after deletion");
+    }
+    else
+    {
+        ESP_LOGI(TAG, "File successfully deleted");
+    }
+    */
 
     // Unmount SPIFFS
     spiffs_result = spiffs_unmount(&conf);
